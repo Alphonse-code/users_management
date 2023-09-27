@@ -10,8 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
+import os
 from pathlib import Path
-
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +30,22 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        #'authentification.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +55,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # ---------- Module ------------
+    'rest_framework',
+    'corsheaders',
+    'rest_framework_simplejwt',
+    "django_rest_passwordreset",
+    # ------ application ----------
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +147,25 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#reglage token
+REST_USE_JWT = True
+# Durée de validité du token d'accès (exprimée en minutes)
+JWT_ACCESS_TOKEN_EXPIRATION = 60  
+
+
+# Email Configuration
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ.get('DJG_EMAIL_HOST')
+EMAIL_PORT = int(os.environ.get('DJG_EMAIL_PORT'))
+EMAIL_USE_TLS = os.environ.get('DJG_EMAIL_USE_TLS')
+EMAIL_TIMEOUT = int(os.environ.get('DJG_EMAIL_TIMEOUT'))
+EMAIL_HOST_USER = os.environ.get('DJG_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('DJG_EMAIL_HOST_PASSWORD')
+
+BASE_URL = os.environ.get('DJG_BASE_URL')

@@ -1,5 +1,4 @@
-# users_management
- Projet RestFull API en Django Rest Framework gestion d'utilisateur 
+
 # Gestionnaire d'Utilisateurs avec Django Rest Framework (DRF)
 
 Ce projet est une application web qui permet la gestion des utilisateurs avec des opérations CRUD (Create, Read, Update, Delete) ainsi que les fonctionnalités de login, registration (inscription), et forgot password (mot de passe oublié) en utilisant Django Rest Framework (DRF).
@@ -29,7 +28,7 @@ Ce projet est une application web qui permet la gestion des utilisateurs avec de
 ## Configuration et Exécution
 
 1. Clonez ce référentiel sur votre machine locale.
-
+    ### https://github.com/Alphonse-code/users_management.git
 2. Installez les dépendances en utilisant `pip` (assurez-vous d'utiliser un environnement virtuel) :
    ```shell
    pip install -r requirements.txt

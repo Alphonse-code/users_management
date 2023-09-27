@@ -1,0 +1,23 @@
+<!-- email_template.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email de confirmation</title>
+</head>
+<body>
+    <h2>Bonjour {{ username }},</h2>
+    <p>
+        Veuillez-trouvez ci- après le lien pour reinitialiser votre mot de passe
+    </p>
+    <h3 style='color:blue; font-size: 20px; font-weight: bold; text-decoration: none;'><a href="{{ verification_link }}">Cliquez-ici pour réinitialiser</a></h3>
+    <p>
+        Si vous avez des questions ou avez besoin d'aide supplémentaire, n'hésitez pas à nous contacter.
+    </p>
+    <p>
+        Cordialement,
+         L'équipe de votre site Web
+    </p>
+</body>
+</html>
