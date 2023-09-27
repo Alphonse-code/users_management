@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework_simplejwt',
     "django_rest_passwordreset",
+    'drf_yasg',
     # ------ application ----------
     'users',
 ]
@@ -74,6 +75,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SWAGGER_SETTINGS = {
+    'DEFAULT_INFO': 'users_management.views.schema_view',
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        },
+    },
+}
 
 ROOT_URLCONF = 'users_management.urls'
 

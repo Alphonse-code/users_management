@@ -24,8 +24,9 @@ from django.utils.encoding import force_bytes
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from rest_framework.response import Response
-
 BASE_URL=settings.BASE_URL
+
+
 # Create your views here.
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
